@@ -19,6 +19,9 @@ public class InvoiceService {
     public List<Invoice> getAllBeforeDeadLine(LocalDate date){
         return invoiceRepository.findAllByDeadLineBefore(date);
     }
+    public List<Invoice> getAllInvoices(){
+        return invoiceRepository.findAll();
+    }
     public Invoice create(Invoice invoice){
         return invoiceRepository.save(invoice);
     }

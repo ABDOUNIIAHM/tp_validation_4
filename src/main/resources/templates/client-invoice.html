@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>client-invoice</title>
+  <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="header :: header"></div>
+<div class="container mt-2">
+    <div class="card">
+        <div class="card-header"><h2>Invoices</h2></div>
+        <div class="card-body table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th><th>Date</th><th>Deadline</th><th>Client</th><th>Payment method</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="c:${clientInvoices}">
+                    <td th:text="${c.id}"></td>
+                    <td th:text="${c.invoiceDate}"></td>
+                    <td th:text="${c.deadLine}"></td>
+                    <td th:text="${c.client.enterprise}"></td>
+                    <td th:text="${c.paymentMethod.name}"></td>
+                    <td>
+                        <div class="container">
+                            <form th:action="@{/invoice}" method="get">
+                                <button type="submit" th:value="${c.id}" class="btn btn-primary">Invoice Detail</button>
+                            </form>
+                        </div>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            <form th:action="@{/invoice/add-invoice}" method="get">
+                <button type="submit" class="btn btn-outline-success">Create Invoice</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
