@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>invoice-lines</title>
+  <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+</head>
+<body>
+<div th:replace="header :: header"></div>
+<div class="container mt-2">
+    <div class="card">
+        <div class="card-header" ><h2>Invoice number #<span th:text="${id}"></span></h2></div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th><th>Product</th><th>price</th><th>Quantity</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="c:${invoiceLines}">
+                    <td th:text="${c.id}"></td>
+                    <td th:text="${c.product.designation}"></td>
+                    <td th:text="${c.product.unitPrice}"></td>
+                    <td th:text="${c.quantity}"></td>
+
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="1"><h3>Total</h3><span th:text="${total}"></span></td>
+                </tr>
+                </tfoot>
+
+            </table>
+        </div>
+        <div class="card-footer">
+            <form th:action="@{/invoice}" method="get">
+                <button type="submit" class="btn btn-outline-success">Invoices</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+</html>
