@@ -17,8 +17,8 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private LocalDate invoiceDate;
-    private LocalDate deadLine;
+    private LocalDate invoiceDate = LocalDate.now();
+    private LocalDate deadLine = invoiceDate.plusMonths(1);
     @ManyToOne
     @JoinColumn(name = "idClient")
     private Client client;
