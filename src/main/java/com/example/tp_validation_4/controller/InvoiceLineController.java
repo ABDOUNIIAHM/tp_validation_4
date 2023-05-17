@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Controller
 @RequestMapping("/invoice-detail")
@@ -24,6 +25,17 @@ public class InvoiceLineController {
 
         List<InvoiceLine> invoiceLines
                 = invoiceLineService.getAllInvoiceLinesByInvoiceId(id);
+
+        double total = 0;
+
+        for (int i = 0; i < invoiceLines.size(); i++) {
+            InvoiceLine e = invoiceLines.get(i);
+            int quantity = e.getQuantity();
+            double linePrice = (e.getProduct().getUnitPrice().doubleValue()) * (quantity);
+            total+= linePrice;
+        }
+
+        model.addAttribute("total",total);
         model.addAttribute("id",id);
         model.addAttribute("invoiceLines",invoiceLines);
 

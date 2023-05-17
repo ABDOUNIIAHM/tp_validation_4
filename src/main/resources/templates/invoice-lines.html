@@ -14,22 +14,22 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Id</th><th>Invoice</th><th>Product</th><th>Quantity</th><th>price</th>
+                    <th>Id</th><th>Product</th><th>price</th><th>Quantity</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="c:${invoiceLines}">
                     <td th:text="${c.id}"></td>
-                    <td th:text="${c.invoice.id}"></td>
                     <td th:text="${c.product.designation}"></td>
-                    <td th:text="${c.quantity}"></td>
                     <td th:text="${c.product.unitPrice}"></td>
+                    <td th:text="${c.quantity}"></td>
+
                 </tr>
                 </tbody>
                 <tfoot>
                 <tr>
-                    <td colspan="4"></td>
-                    <td th:text="${#numbers.formatDecimal(#aggregates.sum(invoiceLines.![product.unitPrice]))}"></td>
+                    <td colspan="1">Total</td>
+                    <td><span th:text="${total}"></span></td>
                 </tr>
                 </tfoot>
 
