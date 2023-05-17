@@ -18,7 +18,7 @@ public class Client {
     private long id;
     private String enterprise;
     private String phone;
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "idAdress")
     private Address address;
     @OneToMany(mappedBy = "client")
