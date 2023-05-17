@@ -59,7 +59,6 @@ public class InvoiceController {
                                 @ModelAttribute("invoiceForm") InvoiceForm invoiceForm){
 
         Map productQuantity = new HashMap<>();
-        InvoiceLine invoiceLine = new InvoiceLine();
 
         //getting the list of products
         List<Product> products = productList
@@ -92,9 +91,10 @@ public class InvoiceController {
         invoice.setPaymentMethod(paymentMethod);
 
         invoiceService.create(invoice);
-        products
+        List<InvoiceLine> invoiceLines = products
                 .stream()
-                .map(p-> {
+                .map(p -> {
+                    InvoiceLine invoiceLine = new InvoiceLine();
                     invoiceLine.setProduct(p);
                     invoiceLine.setQuantity((Integer) productQuantity.get(p));
                     invoiceLine.setInvoice(invoice);
