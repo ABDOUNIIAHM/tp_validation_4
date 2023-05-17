@@ -28,7 +28,7 @@
 
                         <td>
                             <div class="container">
-                                <form th:action="@{/invoice}" method="get">
+                                <form th:action="@{/invoice/{id}(id=${c.id})}" method="get">
                                     <button type="submit" th:value="${c.id}" class="btn btn-primary">Invoices</button>
                                 </form>
                             </div>
