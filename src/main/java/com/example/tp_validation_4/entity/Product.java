@@ -19,6 +19,6 @@ public class Product {
     private long id;
     private String designation;
     private BigDecimal unitPrice;
-    //@OneToMany(mappedBy = "product")
-    //private List<InvoiceLine> invoiceLines = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "product")
+    private List<InvoiceLine> invoiceLines = new ArrayList<>();
 }
