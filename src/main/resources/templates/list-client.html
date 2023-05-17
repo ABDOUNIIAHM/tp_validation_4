@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>list-client</title>
+  <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div th:replace="header :: header"></div>
+    <div class="container mt-2">
+        <div class="card">
+            <div class="card-header"><h2>Client List</h2></div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th><th>Enterprise</th><th>Phone</th><th>Road</th><th>City</th><th>Zip Code</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="c:${clients}">
+                        <td th:text="${c.id}"></td>
+                        <td th:text="${c.enterprise}"></td>
+                        <td th:text="${c.phone}"></td>
+                        <td th:text="${c.address.getRoad()}"></td>
+                        <td th:text="${c.address.getCity()}"></td>
+                        <td th:text="${c.address.getZipCode()}"></td> add .
+
+                        <td>
+                            <div class="container">
+                                <form th:action="@{/invoice}" method="get">
+                                    <button type="submit" th:value="${c.id}" class="btn btn-primary">Invoice Detail</button>
+                                </form>
+                            </div>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <form th:action="@{/client/add-client}" method="get">
+                    <button type="submit" class="btn btn-outline-success">Add Client</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

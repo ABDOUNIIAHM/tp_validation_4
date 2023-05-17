@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>add-client</title>
+  <link rel="stylesheet" href="/webjars/bootstrap/5.2.3/css/bootstrap.min.css">
+</head>
+<body>
+  <div th:replace="header :: header"></div>
+  <div class="container mt-4 w-50">
+      <div class="card">
+          <div class="card-header">
+              <h3>Client Form</h3>
+          </div>
+          <div class="card-body">
+              <form th:action="@{/client}" th:object="${clientForm}" method="post">
+                      <div class="mb-3">
+                          <label class="form-label">Enterprise</label>
+                          <input type="text" th:field="*{client.enterprise}" th:value="${clientForm.client.enterprise}" class="form-control">
+                      </div>
+                      <div class="mb-3">
+                          <label class="form-label">Phone</label>
+                          <input type="tel" th:field="*{client.phone}" th:value="${clientForm.client.phone}" class="form-control">
+                      </div>
+                      <div class="mb-3">
+                          <label class="form-label">Road</label>
+                          <input type="text" th:field="*{address.road}" th:value="${clientForm.address.road}" class="form-control">
+                      </div>
+                      <div class="mb-3">
+                          <label class="form-label">City</label>
+                          <input type="text" th:field="*{address.city}" th:value="${clientForm.address.city}" class="form-control">
+                      </div>
+                      <div class="mb-3">
+                          <label class="form-label">Zip code</label>
+                          <input type="text" th:field="*{address.zipCode}" th:value="${clientForm.address.zipCode}" class="form-control">
+                      </div>
+                  <div>
+                      <button type="submit" class="btn btn-outline-success">SAVE</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+
+</body>
+</html>

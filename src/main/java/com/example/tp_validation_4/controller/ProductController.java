@@ -34,10 +34,9 @@ public class ProductController implements WebMvcConfigurer {
         return "add-product";
     }
     @PostMapping
-    public String addProduct(@ModelAttribute("product") Product product, Model model){
+    public String addProduct(@ModelAttribute("product") Product product){
 
         productService.create(product);
-
         return "redirect:/product";
     }
 }
