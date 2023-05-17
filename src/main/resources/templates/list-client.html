@@ -7,9 +7,9 @@
 </head>
 <body>
     <div th:replace="header :: header"></div>
-    <div class="container mt-2 w-50">
+    <div class="container mt-2">
         <div class="card">
-            <div class="card-header">Client List</div>
+            <div class="card-header"><h2>Client List</h2></div>
             <div class="card-body">
                 <table class="table">
                     <thead>
@@ -24,11 +24,15 @@
                         <td th:text="${c.phone}"></td>
                         <td th:text="${c.address.getRoad()}"></td>
                         <td th:text="${c.address.getCity()}"></td>
-                        <td th:text="${c.address.getZipCode()}"></td>
-                        <td th:text="${c.address.getZipCode()}">
-                            <form th:action="@{/invoice}" method="get">
-                                <button type="submit" th:value="${c.id}" class="btn btn-primary">Invoice Detail</button>
-                            </form>
+                        <td th:text="${c.address.getZipCode()}"></td> add .
+
+                        <td>
+                            <div class="container">
+                                <form th:action="@{/invoice}" method="get">
+                                    <button type="submit" th:value="${c.id}" class="btn btn-primary">Invoice Detail</button>
+                                </form>
+                            </div>
+
                         </td>
                     </tr>
                     </tbody>
