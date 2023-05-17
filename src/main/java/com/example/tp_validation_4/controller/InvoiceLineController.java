@@ -15,7 +15,10 @@ public class InvoiceLineController {
     private InvoiceLineService invoiceLineService;
 
     @GetMapping
-    public String getAllInvoiceLineById(@RequestParam long id, Model model){
+    public String getAllInvoiceLineById(@RequestParam(name = "detail") long id, Model model){
+
+
+
         return "invoice-lines";
     }
 }

@@ -26,7 +26,7 @@
                       <td th:text="${c.paymentMethod.name}"></td>
                       <td>
                           <div class="container">
-                              <form th:action="@{/invoice/detail}" method="get">
+                              <form th:action="@{/invoice-detail}" method="get">
                                   <button type="submit" name="detail" th:value="${c.id}" class="btn btn-primary">Detail</button>
                               </form>
                           </div>

@@ -21,11 +21,22 @@
         <div class="mb-3">
           <label class="form-label">Client id</label>
           <input type="number" th:field="*{client.id}" class="form-control">
-        </div>t status
+        </div>
+
         <div class="mb-3">
           <label class="form-label">Payment method</label>
           <input type="text" th:field="*{paymentMethod.name}" th:value="${invoiceForm.paymentMethod.name}" class="form-control">
         </div>
+
+        <div class="mb-3">
+          <div class="form-check form-check-inline" th:each="p:${products}">
+            <input th:id="${p}" class="form-check-input" type="checkbox" name="productList" th:value="${p.id}" >
+            <label class="form-check-label" th:for="${p}" th:text="${p.designation}"></label>
+            <input type="number" name="quantityList" class="form-control" required>
+          </div>
+
+        </div>
+
         <div>
           <button type="submit" class="btn btn-outline-success">SAVE</button>
         </div>
