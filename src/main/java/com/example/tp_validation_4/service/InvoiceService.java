@@ -23,6 +23,8 @@ public class InvoiceService {
         return invoiceRepository.findAll();
     }
     public Invoice create(Invoice invoice){
+        LocalDate deadline = invoice.getInvoiceDate().plusMonths(1);
+        invoice.setDeadLine(deadline);
         return invoiceRepository.save(invoice);
     }
 }

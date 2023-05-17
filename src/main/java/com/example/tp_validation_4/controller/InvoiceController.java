@@ -4,8 +4,11 @@ import com.example.tp_validation_4.entity.Client;
 import com.example.tp_validation_4.entity.Invoice;
 import com.example.tp_validation_4.entity.PaymentMethod;
 import com.example.tp_validation_4.form.InvoiceForm;
+import com.example.tp_validation_4.service.ClientService;
 import com.example.tp_validation_4.service.InvoiceService;
+import com.example.tp_validation_4.service.PaymentMethodService;
 import lombok.AllArgsConstructor;
+import org.springframework.context.PayloadApplicationEvent;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +20,8 @@ import java.util.List;
 @AllArgsConstructor
 public class InvoiceController {
     private InvoiceService invoiceService;
+    private ClientService clientService;
+    private PaymentMethodService paymentMethodService;
 
     @GetMapping
     public String getAllInvoices(Model model){
@@ -49,8 +54,16 @@ public class InvoiceController {
     public String createInvoice(@ModelAttribute("invoiceForm") InvoiceForm invoiceForm){
 
         Invoice invoice = invoiceForm.getInvoice();
-        Client client = invoiceForm.getClient();
-        PaymentMethod paymentMethod = invoiceForm.getPaymentMethod();
+
+        Client client =clientService
+                .getClientById(invoiceForm
+                        .getClient()
+                        .getId()) ;
+
+        PaymentMethod paymentMethod = paymentMethodService
+                .getByName(invoiceForm
+                        .getPaymentMethod()
+                        .getName()) ;
 
         invoice.setClient(client);
         invoice.setPaymentMethod(paymentMethod);

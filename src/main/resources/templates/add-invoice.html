@@ -19,13 +19,9 @@
           <input type="date" th:field="*{invoice.invoiceDate}" th:value="${invoiceForm.invoice.invoiceDate}" class="form-control">
         </div>
         <div class="mb-3">
-          <label class="form-label">Deadline</label>
-          <input type="date" th:field="*{invoice.deadLine}" th:value="${invoiceForm.invoice.deadLine}" class="form-control">
-        </div>
-        <div class="mb-3">
           <label class="form-label">Client id</label>
-          <input type="text" th:field="*{client.id}" th:value="${invoiceForm.client.id}" class="form-control">
-        </div>
+          <input type="number" th:field="*{client.id}" class="form-control">
+        </div>t status
         <div class="mb-3">
           <label class="form-label">Payment method</label>
           <input type="text" th:field="*{paymentMethod.name}" th:value="${invoiceForm.paymentMethod.name}" class="form-control">
